@@ -22,11 +22,14 @@
             <!-- 基本輸入 -->
             <div class="mb-3">
               <label for="ytUrl" class="form-label">YouTube 網址</label>
+              <button class="btn btn-sm btn-outline-secondary" id="btnPaste" type="button" title="從剪貼簿貼到上方網址">貼上</button>
               <div class="input-group">
                 <input type="url" class="form-control" id="ytUrl" placeholder="例如：https://www.youtube.com/watch?v=amlJDZd_iew" />
-                <button class="btn btn-primary" id="btnGenerate">產生</button>
+                <!-- 移除貼上按鈕，避免擁擠 -->
+                <button class="btn btn-outline-danger" id="btnClear" type="button" title="清除輸入與預覽">清除</button>
+                <button class="btn btn-primary" id="btnGenerate" type="button">產生</button>
               </div>
-              <div class="form-text">可直接貼上 YouTube App 分享的連結。</div>
+              <div class="form-text">可直接貼上 YouTube App 分享的連結。若裝置允許，可按「貼上」按鈕自動從剪貼簿讀取。</div>
             </div>
 
             <!-- 進階設定（預設收合） -->
@@ -85,10 +88,10 @@
 
             <hr class="my-4" />
 
-            <!-- 輸出與複製 -->
-            <div class="mb-2 d-flex align-items-center gap-2">
+            <!-- 輸出與工具列 -->
+            <div class="mb-2 d-flex align-items-center gap-2 flex-wrap">
               <h2 class="h6 mb-0">輸出程式碼</h2>
-              <button class="btn btn-sm btn-outline-secondary" id="btnCopy">複製</button>
+              <button class="btn btn-sm btn-outline-secondary" id="btnCopy" type="button" title="複製下方輸出程式碼">複製</button>
             </div>
             <textarea class="form-control" id="output" rows="6" readonly></textarea>
           </div>
@@ -252,8 +255,48 @@
       });
     }
 
+    async function pasteFromClipboard() {
+      try {
+        const text = await navigator.clipboard.readText();
+        if (!text) {
+          showToast('剪貼簿沒有內容。', 'warning');
+          return;
+        }
+        const input = document.getElementById('ytUrl');
+        input.value = text.trim();
+        // 若看起來是 YouTube 連結就自動產生
+        if (/youtu(\.be|be\.com)/i.test(input.value)) {
+          generate();
+        } else {
+          showToast('已貼上，但不是 YouTube 連結。', 'warning');
+        }
+      } catch (err) {
+        showToast('無法讀取剪貼簿，請手動貼上。', 'warning');
+      }
+    }
+
+    function clearAll() {
+      document.getElementById('ytUrl').value = '';
+      document.getElementById('output').value = '';
+      // 還原預覽區佈局與提示文字
+      const wrap = document.getElementById('previewWrap');
+      wrap.innerHTML = '<span class="text-secondary">產生後會在這裡顯示預覽</span>';
+      document.getElementById('ytUrl').focus();
+      showToast('已清除輸入與預覽。', 'info');
+    }
+
     document.getElementById('btnGenerate').addEventListener('click', generate);
     document.getElementById('btnCopy').addEventListener('click', copyOutput);
+    document.getElementById('btnPaste').addEventListener('click', pasteFromClipboard);
+    document.getElementById('btnClear').addEventListener('click', clearAll);
+
+    // Enter 快捷鍵：在輸入框按 Enter 直接產生
+    document.getElementById('ytUrl').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        generate();
+      }
+    });
 
     // 範例預填
     document.getElementById('ytUrl').value = 'https://www.youtube.com/watch?v=amlJDZd_iew';
