@@ -4,8 +4,6 @@
 
 一個給記者／編輯在 **手機或桌機** 上快速把 YouTube 連結轉成可嵌入 `<iframe>` 的小工具。以 **Bootstrap 5** 打造，單一 HTML 檔即可使用，支援時間戳、播放清單、`shorts`，並提供複製／貼上／清除與即時預覽。
 
----
-
 ## ✨ 功能特色
 
 * **多連結格式支援**：`watch?v=...`、`youtu.be/...`、`shorts/...`、以及播放清單 `list=...`。
@@ -24,8 +22,6 @@
 * **貼心提示**：所有關鍵動作（複製成功、貼上權限不足等）皆以 **Bootstrap Toast** 顯示於右下角。
 * **鍵盤快捷**：在網址輸入框按 **Enter** 直接產生。
 
----
-
 ## 📦 專案結構
 
 本工具為單檔案專案：
@@ -38,8 +34,6 @@ index.html  # 含 Bootstrap CDN、UI 與所有邏輯
 
 > 依賴：Bootstrap 5.3（CDN），無額外套件。
 
----
-
 ## 🚀 快速開始
 
 1. 下載或複製本專案到你的電腦。
@@ -47,8 +41,6 @@ index.html  # 含 Bootstrap CDN、UI 與所有邏輯
 3. 貼上 YouTube 連結，按「產生」，複製下方程式碼貼到你的 CMS／後臺即可。
 
 > 若要部署到 GitHub Pages：將 `index.html` 放在 repo 根目錄，於 GitHub 開啟 Pages（Branch: `main` / 根目錄）。
-
----
 
 ## 🧭 使用說明
 
@@ -63,8 +55,6 @@ index.html  # 含 Bootstrap CDN、UI 與所有邏輯
    * **控制列（controls）**：可隱藏或顯示播放控制列。
    * **rel=0**：僅顯示**同頻道**的相關影片（註：YouTube 規則變更後，無法完全關閉相關影片）。
 4. 按 **複製** 將輸出程式碼複製到剪貼簿。
-
----
 
 ## 🔗 支援的連結格式
 
@@ -81,8 +71,6 @@ index.html  # 含 Bootstrap CDN、UI 與所有邏輯
 > * 影片：`https://www.youtube.com/embed/VIDEO_ID?...`
 > * 清單：`https://www.youtube.com/embed/videoseries?list=PLAYLIST_ID...`
 
----
-
 ## 🧩 產出範例
 
 ```html
@@ -97,16 +85,12 @@ index.html  # 含 Bootstrap CDN、UI 與所有邏輯
 </div>
 ```
 
----
-
 ## ⚠️ 瀏覽器與權限注意事項
 
 * **讀取剪貼簿**（貼上按鈕）需要 **HTTPS** 網站或 `localhost`，且需使用者觸發動作。
 * 某些瀏覽器（特別是 iOS Safari）對剪貼簿權限較嚴格，無法直接讀取時，系統會跳出 Toast 提示你改用手動貼上。
 * **自動播放** 常見限制：行動裝置通常需 **同時靜音** 才可自動播放。
 * **rel=0 行為**（YouTube 規則，2018 之後）：無法完全關閉相關影片，只會限制為「同頻道」的相關影片。
-
----
 
 ## 🔧 自訂與擴充
 
@@ -118,14 +102,10 @@ index.html  # 含 Bootstrap CDN、UI 與所有邏輯
   * 「複製」按鈕置於「輸出程式碼」標題右側。
   * 若想改成圖示按鈕或 Tooltip，可直接調整對應按鈕樣式與屬性。
 
----
-
 ## 🧱 已知限制
 
 * 不支援 **會員影片**、**年齡限制** 或需要登入授權的內容（YouTube 本身不允許嵌入或會顯示受限）。
 * 若網址格式不標準、或短網址經過額外跳轉，可能須先在瀏覽器中開啟後再複製分享連結。
-
----
 
 ## 🤝 貢獻
 
@@ -135,13 +115,9 @@ Issue／PR 歡迎協作：
 * 增加更多參數切換（`modestbranding`、`playsinline`、`loop`、`playlist` 等）。
 * i18n 語系切換（目前為繁體中文）。
 
----
-
 ## 📝 授權
 
 MIT License
-
----
 
 ## 🗒️ 版本紀錄（Changelog）
 
