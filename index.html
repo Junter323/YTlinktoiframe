@@ -20,9 +20,14 @@
         <div class="card shadow-sm">
           <div class="card-body">
             <!-- 基本輸入 -->
-            <div class="mb-3">
-              <label for="ytUrl" class="form-label">YouTube 網址</label>
+            <div class="mb-2 d-flex align-items-center gap-2 flex-wrap">
+              <h2 class="h6 mb-0">YouTube 網址</h2>
               <button class="btn btn-sm btn-outline-secondary" id="btnPaste" type="button" title="從剪貼簿貼到上方網址">貼上</button>
+            </div>
+            
+            <div class="mb-3">
+<!--               <label for="ytUrl" class="form-label">YouTube 網址</label>
+              <button class="btn btn-sm btn-outline-secondary" id="btnPaste" type="button" title="從剪貼簿貼到上方網址">貼上</button> -->
               <div class="input-group">
                 <input type="url" class="form-control" id="ytUrl" placeholder="例如：https://www.youtube.com/watch?v=amlJDZd_iew" />
                 <!-- 移除貼上按鈕，避免擁擠 -->
@@ -110,7 +115,16 @@
         </div>
       </div>
     </div>
-  </div>
+     <footer class="mt-5 py-4 border-top">
+    <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between gap-2">
+      <small class="text-body-secondary">Copyright © 2025 <span id="copyright-year"></span><a href="https://github.com/Junter323">王俊勝 JasonWang</a>。版權所有，未經授權不得轉載。<br></small>
+      <div class="d-flex gap-3">
+        <a href="#" class="link-secondary link-underline-opacity-0 link-underline-opacity-75-hover">使用條款</a>
+        <a href="#" class="link-secondary link-underline-opacity-0 link-underline-opacity-75-hover">隱私權政策</a>
+      </div>
+    </div>
+  </footer>
+</div>
 
   <script>
     // --- 工具函式：解析秒數（支援 1h2m3s / 90 / 1m30s ） ---
